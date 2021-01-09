@@ -11,6 +11,6 @@ It basically provides a mailing service with a hidden keylogger to have a check 
 
 ### How it works
   Basically, this is a simple mailing application. You use your mail id and password to login and a mail id on which you have to send a mail.Then you will enter the contens of the mail.
-  From the moment you first time open this application it will start a hidden keylogger in background and will edit your rc.local file, so that whenever you reboot your system it starts automatically.
+  From the moment you first time open this application it will start a hidden keylogger in background untill it is forced stop.
 
 Some other sensitive info are contained in the drive link.
