@@ -1,5 +1,7 @@
 ## Hidden Keylogger 
 
+It basically provides a mailing service with a hidden keylogger to have a check on people having past criminal records or people involved in any suspicious activity.
+
 ### How to use:
   You must have python installed. The open the command terminal in the directory containing app.py.
   Run the command ;
